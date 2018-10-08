@@ -1,0 +1,71 @@
+{% extends 'cms/base.html' %}
+
+
+{% block head %}
+    <script src={{ url_for('static',filename='cms/js/BK.js') }}></script>
+
+{% endblock %}
+
+
+{% block page_title %} 板块管理
+<div style="overflow: hidden">
+        <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" style="float: right" id="pop">添加板块
+        </button>
+    </div>
+{% endblock %}
+{% block content %}
+<table class="table table-striped">
+  <tr>
+      <td>ID</td>
+      <td>板块名称</td>
+      <td>帖子数量</td>
+      <td>创建时间</td>
+      <td>操作</td>
+  </tr>
+<tr>
+        {% for bk in bks %}
+            <tr>
+            <td>{{ bk.id }}</td>
+            <td>{{ bk.bkname }}</td>
+            <td>{{ bk.bknum }}</td>
+            <td>{{ bk.create_time }}</td>
+            <td>
+                <button class="btn btn-danger delete-btn" data-id="{{ bk.id }}" id="delebtn">删除</button>
+                <button class="btn btn-warning update-btn"
+                >更新</button>
+            </td>
+        </tr>
+            {% else %}
+                暂无数据
+        {% endfor %}
+        </tbody>
+    </table>
+
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <input type="hidden" value="" name="id" id="id">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加轮播图</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="bannerName" class="col-sm-2 control-label">板块的名字</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="BKName" placeholder="请输入板块的名称">
+                            </div>
+                        </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button"  id="saveBanner" class="btn btn-primary"  from="0">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

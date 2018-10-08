@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf_token" value="{{csrf_token()}}"  id="csrf_token">
+    <title>Title</title>
+    <script src="{{url_for('static',filename='jquery-1.11.1.min.js')}}"></script>
+    <script src="{{url_for('static',filename='bootstrap.min.js')}}"></script>
+    <link href="{{url_for('static',filename='bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+     <script src="{{url_for('static',filename='config.json')}}"></script>
+    <script src="{{url_for('static',filename='front/js/addporta.js')}}"></script>
+      <script src="{{url_for('static',filename='common/sweetalert/xtalert.js')}}"></script>
+    <script src="{{url_for('static',filename='common/sweetalert/sweetalert.min.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static',filename='utf8-php/ueditor.config.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='utf8-php/ueditor.all.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='common/sweetalert/sweetalert.css')}}">
+</head>
+<body>
+   <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">破茧科技</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/sigin/">登录</a></li>
+          <a href="/sigup/" >注册 <span class="caret"></span></a>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+   <br>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">内容</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="内容" id="a">
+    </div>
+  </div>
+  <div class="form-group">b
+    <label for="inputPassword3" class="col-sm-2 control-label">内容</label>
+    <div class="col-sm-10">
+      <select type="select" class="form-control"  placeholder="内容" id="b">
+          {% for bk in BKS %}
+            <option value="{{ bk.id }}">{{ bk.bkname }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    </div>
+  </div>
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+      <script id="editor" name="content" type="text/plain"></script>
+
+    <script type="text/javascript">
+          var ue = UE.getEditor("editor",{
+         'serverUrl': '/upload/'
+     });
+    </script>
+          </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default" id="addpost">提交</button>
+    </div>
+  </div>
+</form>
+</body>
+</html>
